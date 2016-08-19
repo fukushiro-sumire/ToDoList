@@ -1,13 +1,15 @@
 ﻿<p id="notice"><%= notice %></p>
 
 <h1>Listing Tasks</h1>
-<%= form_tag({:action => "search"},{:method => "GET"}) do %>
-<%= collection_select 'search', 'user' , User.all , :id,:username, {selected: @search_user,include_blank: "全員"} %>
-<%= collection_select 'search', 'category' , Category.all , :id,:categoryname, {selected: @search_category,include_blank: "全カテゴリー"} %>
- <%= text_field_tag "search[name]", @name %>
- <%= submit_tag"検索" %>
- <%= link_to "リセット", tasks_path %>
-<% end %>
+<p id="notice"><%= notice %></p>
+
+ <%= form_tag(:action=>"search") do %>  
+<%= collection_select 'search', 'user' ,User.all, :userid, :username, {selected: @search_user,include_blank: "全員"}%>  
+ <%= collection_select 'search', 'category' ,Category.all, :id, :categoryname, {selected: @search_category,include_blank: "全カテゴリー"}%>  
+  <%= text_field_tag "search[name]",@search_value %>  
+   <%= submit_tag "検索" %>  
+   <%= link_to "リセット", tasks_path %>  
+ <% end %>  
 
 <table>
   <thead>
@@ -28,7 +30,7 @@
         <td><%= task.category_id %></td>
         <td><%= task.name %></td>
         <td><%= task.dane %></td>
-        <td><%= task.user_id %></td>
+        <td><%= task.user_id%></td>
         <td><%= link_to 'Show', task %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
         <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -40,3 +42,5 @@
 <br>
 
 <%= link_to 'New Task', new_task_path %>
+
+

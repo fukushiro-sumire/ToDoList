@@ -49,23 +49,9 @@ class TasksController < ApplicationController
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def search
-   @name = params["search"]["name"]
-   @search_user = params["search"]["user"]
-   @search_category = params["search"]["category"]
-   @tasks = Task.where("name like %#{@search_value}%'")
-    if @search_user.present?
-      @tasks = @tasks.where(user_id: @search_user)
-    end
-    if @search_category.present?
-     @tasks = @tasks.where(category_id: @search_category)
-    end
-   render :index
  end
 
-
+ 
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
@@ -75,6 +61,23 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
+ 
+ def search  
+      
+    @search_value = params['search']['name']
+   @search_user = params['search']['user']
+    @search_category = params['search']['category']
+    @tasks = Task.where("name like '%#{@search_value}%'")
+  if @search_user.present?
+     @tasks = @tasks.where(user_id: @search_user)
+  end
+  if @search_category.present?
+     @tasks = @tasks.where(category_id: @search_category)
+   end
+   render :index
+   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
