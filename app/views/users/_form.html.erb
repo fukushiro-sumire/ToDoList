@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <% f.label :password %>パスワード<br>
-    <%= f.text_field :password %>
+    <%= f.text_field :password ,:maxlength => 4 %>
   </div>
   <div class="actions">
     <%= f.submit %>
