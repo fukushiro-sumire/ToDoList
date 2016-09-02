@@ -65,7 +65,7 @@
  def search  
       
     @search_value = params['search']['name']
-   @search_user = params['search']['user']
+    @search_user = params['search']['user']
     @search_category = params['search']['category']
     @tasks = Task.where("name like '%#{@search_value}%'")
   if @search_user.present?

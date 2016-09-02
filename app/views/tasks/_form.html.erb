@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <% f.label :category_id %>カテゴリー<br>
-    <%= f.collection_select :category_id, Category.all ,:categoryname,:categoryname %>
+    <%= f.collection_select :category_id, Category.all ,:categoryname, :categoryname %>
   </div>
   <div class="field">
     <% f.label :name %>内容<br>
@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <% f.label :user_id %>ユーザーID<br>
-    <%= f.collection_select :user_id , User.all , :userid,:username %>
+    <%= f.collection_select :user_id , User.all , :userid, :username %>
   </div>
   <div class="actions">
     <%= f.submit %>
